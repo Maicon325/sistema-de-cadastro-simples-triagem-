@@ -1,0 +1,28 @@
+document.getElementById('triagemForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const nome = document.getElementById('nome').value;
+    const idade = document.getElementById('idade').value;
+    const sexo = document.getElementById('sexo').value;
+    const sintomas = document.getElementById('sintomas').value;
+
+    let triagemStatus;
+
+    if (sintomas.toLowerCase().includes('febre') || sintomas.toLowerCase().includes('tosse')) {
+        triagemStatus = 'Necessário Atendimento Imediato';
+    } else if (idade > 60) {
+        triagemStatus = 'Prioridade';
+    } else {
+        triagemStatus = 'Aguardando Atendimento';
+    }
+
+    const resultadoDiv = document.getElementById('resultado');
+    resultadoDiv.innerHTML = `
+        <h2>Resultado da Triagem</h2>
+        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Idade:</strong> ${idade}</p>
+        <p><strong>Sexo:</strong> ${sexo}</p>
+        <p><strong>Sintomas:</strong> ${sintomas}</p>
+        <p><strong>Status da Triagem:</strong> ${triagemStatus}</p>
+    `;
+});
